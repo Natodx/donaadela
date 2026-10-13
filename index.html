@@ -389,6 +389,14 @@ footer .tagline{font-family:var(--display);font-style:italic;font-size:1.3rem;co
 .sent textarea{width:100%;min-height:7rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:4px;font:300 .8rem var(--body);padding:.5rem}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:90;background:var(--ink);color:var(--paper);padding:.8rem 1.2rem;border-radius:999px;font-size:.88rem;box-shadow:var(--shadow);animation:rise .3s}
 
+
+/* Catálogo: la flor completa y más alejada, sobre un fondo difuminado de la misma foto */
+.card .ph::before{content:"";position:absolute;inset:-30px;background:var(--bg) center/cover no-repeat;filter:blur(24px) saturate(1.05);opacity:.55}
+.card .ph img{position:relative;object-fit:contain;padding:8% 10% 10%;filter:drop-shadow(0 10px 18px rgba(40,14,22,.22))}
+.card .ph{background:var(--blush)}
+.card .ph::before{opacity:.45}
+.card .ph img[src$="isotipo.svg"]{padding:24%}
+.card .tag,.card .dots{z-index:1}
 /* ---------- Teléfono: atajos grandes, catálogo a todo el ancho, versión más sencilla ---------- */
 .quick{display:none}
 body{margin:0}
@@ -410,7 +418,7 @@ html{scroll-padding-top:80px}
   .lines{overflow:visible;min-height:auto}
   .line .ctl .qty button{width:40px;height:40px}
   .modal .big{min-height:auto}
-  .modal .big img{height:auto;aspect-ratio:4/3;max-height:50vh}
+  .modal .big img{height:auto;aspect-ratio:1/1;max-height:55vh;object-fit:contain}
   .modal .close{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;width:46px;height:46px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
   .modal .body{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
   .cart-btn{padding:.6rem .9rem}.cart-btn svg{width:22px;height:22px}.cart-count{min-width:1.7rem;height:1.7rem;font-size:.85rem}
@@ -421,7 +429,6 @@ html{scroll-padding-top:80px}
   .hero figure{display:none}
   .hero .ctas .btn{width:100%;font-size:.95rem;min-height:52px}
   .btn{font-size:.9rem;min-height:48px}
-  .album figure:nth-child(n+2){display:none}
   .zone-list{display:flex;flex-wrap:wrap;gap:.45rem}
   .zone-list li{border:0;padding:.45rem .8rem;border-radius:999px;background:var(--blush);font:400 .95rem var(--body)}
   .zone-list li::before{display:none}
@@ -884,7 +891,7 @@ function renderGrid(){
   $("#grid").innerHTML=list.length?list.map(p=>{
     const min=Math.min(...p.pres.map(x=>x.price??Infinity));
     return `<button class="card" type="button" data-open="${p.id}" aria-label="Ver ${esc(p.name)}">
-      <span class="ph"><img src="${cardImg(p)}" alt="" loading="lazy">${p.star?'<span class="tag">Premiado · Moscú 2018</span>':""}
+      <span class="ph" style="--bg:url('${cardImg(p)}')"><img src="${cardImg(p)}" alt="" loading="lazy">${p.star?'<span class="tag">Premiado · Moscú 2018</span>':""}
       ${p.colors.length?`<span class="dots">${p.colors.slice(0,7).map(c=>`<i style="background:${c.hex}"></i>`).join("")}</span>`:""}</span>
       <h3>${esc(p.name)}</h3>
       <span class="meta"><span>${esc(p.pres.length>1?p.pres.length+" presentaciones":p.pres[0].note)}${p.colors.length>1?" · "+p.colors.length+" colores":p.colors.length?" · "+p.colors[0].n.toLowerCase():""}</span><strong>${min===Infinity?"A consultar":(p.pres.length>1?"desde ":"")+money(min)}</strong></span>
