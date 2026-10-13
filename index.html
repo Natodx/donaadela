@@ -1,3 +1,9 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7a1f35">
 <title>Doña Adela Distribuidora Agrícola</title>
 <meta name="description" content="Distribuidora Agrícola Doña Adela: flores de cosecha propia en San Antonio de Los Altos, Venezuela. Catálogo en línea y pedidos por WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -382,6 +388,63 @@ footer .tagline{font-family:var(--display);font-style:italic;font-size:1.3rem;co
 .sent{display:grid;gap:.6rem;padding:.9rem;border-radius:6px;background:var(--blush);font-size:.85rem}
 .sent textarea{width:100%;min-height:7rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:4px;font:300 .8rem var(--body);padding:.5rem}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:90;background:var(--ink);color:var(--paper);padding:.8rem 1.2rem;border-radius:999px;font-size:.88rem;box-shadow:var(--shadow);animation:rise .3s}
+
+/* ---------- Teléfono: atajos grandes, catálogo a todo el ancho, versión más sencilla ---------- */
+.quick{display:none}
+body{margin:0}
+html,body{overflow-x:clip}
+html{scroll-padding-top:80px}
+@media (max-width:860px){html{scroll-padding-top:136px}}
+@media (max-width:860px){
+  .quick{display:flex;gap:.5rem;overflow-x:auto;padding:.55rem 16px .7rem;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-top:1px solid var(--line)}
+  .quick::-webkit-scrollbar{display:none}
+  .quick a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 1.15rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;font:500 1rem var(--body);letter-spacing:.02em}
+  .quick a:first-child{background:var(--brand);border-color:var(--brand);color:#fff}
+  .nav .wrap{height:62px}
+  .cur button{font-size:.9rem;padding:.6rem .8rem;white-space:nowrap}
+  .scrim{padding:0;place-items:stretch}
+  .modal{grid-template-columns:minmax(0,1fr)!important;width:100%;max-height:100dvh;border-radius:0}
+  .modal{align-content:start}
+  .drawer{overflow-y:auto;grid-template-rows:auto auto auto;align-content:start}
+  .drawer header{position:sticky;top:0;z-index:2;background:var(--surface)}
+  .lines{overflow:visible;min-height:auto}
+  .line .ctl .qty button{width:40px;height:40px}
+  .modal .big{min-height:auto}
+  .modal .big img{height:auto;aspect-ratio:4/3;max-height:50vh}
+  .modal .close{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;width:46px;height:46px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+  .modal .body{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}
+  .cart-btn{padding:.6rem .9rem}.cart-btn svg{width:22px;height:22px}.cart-count{min-width:1.7rem;height:1.7rem;font-size:.85rem}
+}
+@media (max-width:560px){
+  body{-webkit-text-size-adjust:100%}
+  .topbar{font-size:.8rem}
+  .hero figure{display:none}
+  .hero .ctas .btn{width:100%;font-size:.95rem;min-height:52px}
+  .btn{font-size:.9rem;min-height:48px}
+  .album figure:nth-child(n+2){display:none}
+  .zone-list{display:flex;flex-wrap:wrap;gap:.45rem}
+  .zone-list li{border:0;padding:.45rem .8rem;border-radius:999px;background:var(--blush);font:400 .95rem var(--body)}
+  .zone-list li::before{display:none}
+  /* Catálogo: una flor por fila, a todo el ancho */
+  .cat-tools{flex-direction:column;align-items:stretch;min-width:0}
+  .cat-tools>div{min-width:0;max-width:calc(100% + 32px)}
+  .cat-tools>div{flex-wrap:nowrap!important;overflow-x:auto;margin-inline:-16px;padding:0 16px .2rem;scrollbar-width:none}
+  .cat-tools>div::-webkit-scrollbar{display:none}
+  .chip{flex:none;min-height:46px;padding:0 1.2rem;font-size:1rem;letter-spacing:.02em}
+  .search{border:1px solid var(--line);border-radius:999px;padding:.75rem 1rem;background:var(--surface)}
+  .search input{font-size:16px}
+  .search svg{width:20px;height:20px}
+  .grid{grid-template-columns:1fr;gap:34px}
+  .card h3{font-size:1.9rem}
+  .card .meta{flex-direction:row;align-items:baseline}
+  .card .meta span{font-size:1rem}
+  .card .meta strong{font-size:1.6rem}
+  .card .tag{font-size:.72rem;letter-spacing:.14em}
+  .card .dots i{width:14px;height:14px}
+  .mosaic figcaption span{display:none}
+  .mosaic figcaption b{font-size:1.05rem}
+  .wa-float{width:62px;height:62px}
+}
 </style>
 
 <div class="topbar" role="note">
@@ -410,6 +473,9 @@ footer .tagline{font-family:var(--display);font-style:italic;font-size:1.3rem;co
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 8h14l-1.2 11.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8L5 8Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
       <span class="lbl">Pedido</span> <span class="cart-count" id="cartCount">0</span>
     </button>
+  </div>
+  <div class="quick" aria-label="Atajos">
+    <a href="#catalogo">Catálogo</a><a href="#comprar">Cómo comprar</a><a href="#premio">Premios</a><a href="#historia">Historia</a><a href="#accion">En acción</a><a href="#cuidados">Cuidados</a><a href="#preguntas">Preguntas</a>
   </div>
 </nav>
 
@@ -963,7 +1029,7 @@ const TRABAJOS = [
       return;
     }
     cur=list;
-    box.innerHTML=list.map((t,i)=>`<figure class="${t.forma==="wide"?"wide":""}"><button class="shot" type="button" data-shot="${i}" aria-label="Ver foto: ${esc(t.titulo)}"><img src="${esc(t.img)}" alt="${esc(t.titulo)}" loading="lazy"></button><figcaption><b>${esc(t.titulo)}</b>${esc(t.detalle||"")}</figcaption></figure>`).join("");
+    box.innerHTML=list.map((t,i)=>`<figure class="${t.forma==="wide"?"wide":""}"><button class="shot" type="button" data-shot="${i}" aria-label="Ver foto: ${esc(t.titulo)}"><img src="${esc(t.img)}" alt="${esc(t.titulo)}" loading="lazy"></button><figcaption><b>${esc(t.titulo)}</b><span>${esc(t.detalle||"")}</span></figcaption></figure>`).join("");
   }
   let cur=[],idx=0,lbEl=null,back=null;
   function show(){const t=cur[idx];lbEl.querySelector("img").src=t.full||t.img;lbEl.querySelector("img").alt=t.titulo;lbEl.querySelector("p").innerHTML=`<b>${esc(t.titulo)}</b>${esc(t.detalle||"")}`}
