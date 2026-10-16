@@ -866,7 +866,7 @@ try{cart=JSON.parse(localStorage.getItem("da-pedido")||"[]")}catch(e){cart=[]}
 const save=()=>{try{localStorage.setItem("da-pedido",JSON.stringify(cart))}catch(e){}};
 const byId=id=>PRODUCTS.find(p=>p.id===id);
 /* Un pedido guardado puede traer flores, colores o precios que ya cambiaron: se ajusta al catálogo actual. */
-cart=(Array.isArray(cart)?cart:[]).filter(l=>{const p=byId(l.id),pr=p&&p.pres.find(x=>x.k===l.key.split("|")[2]);
+cart=(Array.isArray(cart)?cart:[]).filter(l=>{if(!l||typeof l!=="object")return false;l.q=Math.min(999,Math.max(1,parseInt(l.q,10)||1));const p=byId(l.id),pr=p&&p.pres.find(x=>x.k===String(l.key||"").split("|")[2]);
   if(!pr||(p.colors.length&&!p.colors.some(c=>c.n===l.color))||(pr.only&&pr.only!==l.color))return false;
   Object.assign(l,{name:p.name,pres:pr.l,note:pr.note,price:pr.price});return true});
 const lineKey=(id,c,pr)=>[id,c,pr].join("|");
